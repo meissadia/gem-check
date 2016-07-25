@@ -16,6 +16,7 @@ $ gem-check
 ![gem-check](./screenshot-gem-check.png)
 
 ## Dependencies  
+gems ~> 0.8.3
 terminal-table ~> 1.6.0
 
 ## Contributing

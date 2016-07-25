@@ -2,7 +2,7 @@ require 'rubygems'
 require 'ostruct'
 require 'gems'
 require 'terminal-table'
-require_relative "version"
+require_relative 'version'
 
 module GemCheck
   def print_table
