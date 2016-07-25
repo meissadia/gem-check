@@ -1,4 +1,5 @@
 # gem-check
+[![Gem Version](https://badge.fury.io/rb/gem-check.svg)](https://badge.fury.io/rb/gem-check)
 
 A simple ruby utility to see the download count for your owned gems.
 
