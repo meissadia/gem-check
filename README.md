@@ -13,7 +13,7 @@ Create your gem credentials file as described on [rubygems.org](https://rubygems
 ```
 $ gem-check
 ```
-![gem-check](./screenshot-gem-check.png)
+![gem-check](./gem-check.png)
 
 ## Dependencies  
 gems ~> 0.8.3  
