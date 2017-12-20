@@ -2,4 +2,4 @@
 require_relative '../lib/gem-check'
 include GemCheck
 
-print_table
+gem_check
