@@ -1,7 +1,7 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'version'
+require_relative 'lib/gem-check/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "gem-check"
@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
   spec.description   = %q{See the download counts (current version & total) of your owned gems.}
   spec.homepage      = "https://github.com/meissadia/gem-check"
 
-  spec.files         = Dir.glob('{bin,lib}/**/*') + ['README.md', 'screenshot-gem-check.png']
+  spec.files         = Dir.glob('{bin,lib}/**/*') + ['README.md', 'gem-check.png']
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 

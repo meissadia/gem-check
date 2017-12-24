@@ -1,5 +1,8 @@
 #!/usr/bin/env ruby
 require_relative '../lib/gem-check'
 include GemCheck
-
-gem_check
+if ARGV.include?("-h")
+  Checker.show_help
+else
+  Checker.new(ARGV).check
+end
