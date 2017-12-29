@@ -16,26 +16,23 @@ module GemCheck
 
     # Gems API
     def current_gem_info
-      @current_stats = []
       Gems.gems.map do |x|
         x = OpenStruct.new(x)
-        val = [x.name, x.version, commafy(x.version_downloads), commafy(x.downloads)]
-        @current_stats << val
-        val
+        [x.name, x.version, commafy(x.version_downloads), commafy(x.downloads)]
       end
     end
 
     # Features
     def add_new_download_info(latest_info)
       return latest_info if @previous_stats.empty?
-      latest_info.map do |row|
+      latest_info.each do |row|
         prev_info = search_by_column(@previous_stats, COL_NAME, row[COL_NAME])
-        prev_info = search_by_column(prev_info,       COL_VER,  row[COL_VER])
-        return row if prev_info.empty?
-        prev_info = prev_info.first
-        calc_new_downloads(COL_TDL, row, prev_info)
-        calc_new_downloads(COL_VDL, row, prev_info)
-        row
+        prev_info = search_by_column(prev_info,       COL_VER,  row[COL_VER]) unless prev_info.empty?
+        unless prev_info.empty?
+          prev_info = prev_info.first
+          calc_new_downloads(COL_TDL, row, prev_info)
+          calc_new_downloads(COL_VDL, row, prev_info)
+        end
       end
     end
 

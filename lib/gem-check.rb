@@ -48,9 +48,9 @@ module GemCheck
     end
 
     def build_table
-      rows  = current_gem_info.sort!{|a, b| b[2].to_i <=> a[2].to_i}
-      rows  = add_new_download_info(rows)
-      table = Terminal::Table.new(rows: rows)
+      @current_stats = current_gem_info.sort!{|a, b| b[2].to_i <=> a[2].to_i}
+      add_new_download_info(@current_stats)
+      table = Terminal::Table.new(rows: @current_stats)
       table.title    = header_string
       table.headings = REPORT_HEADINGS
       [1  ].each{ |col| table.align_column(col, :left)  }
