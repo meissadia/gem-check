@@ -38,7 +38,7 @@ module GemCheck
 
     def calc_new_downloads(idx, row, info)
       new_dls = decommafy(row[idx]).to_i - decommafy(info[idx]).to_i
-      @new_downloads += new_dls
+      @new_downloads += new_dls if idx.eql?(COL_TDL)
       row[idx] = new_dls > 0 ? "#{row[idx]} ( +#{commafy(new_dls)} )" : row[idx]
     end
 
@@ -54,8 +54,5 @@ module GemCheck
       @update_version = JSON.parse(versions, object_class: OpenStruct).first.number
       @update_version > GemCheck::VERSION
     end
-
-
-
   end
 end
