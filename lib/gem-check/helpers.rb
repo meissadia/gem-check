@@ -28,16 +28,19 @@ module GemCheck
       latest_info.each do |row|
         prev_info = search_by_column(@previous_stats, COL_NAME, row[COL_NAME])
         prev_info = search_by_column(prev_info,       COL_VER,  row[COL_VER]) unless prev_info.empty?
-        unless prev_info.empty?
-          prev_info = prev_info.first
-          calc_new_downloads(COL_TDL, row, prev_info)
-          calc_new_downloads(COL_VDL, row, prev_info)
-        end
+        prev_info = prev_info.first || new_version_info(row)
+        calc_new_downloads(COL_TDL, row, prev_info)
+        calc_new_downloads(COL_VDL, row, prev_info)
       end
     end
 
+    def new_version_info(row)
+      tdl = to_int(row[COL_TDL]) - to_int(row[COL_VDL])
+      [row[COL_NAME], row[COL_VER], 0 , tdl]
+    end
+
     def calc_new_downloads(idx, row, info)
-      new_dls = decommafy(row[idx]).to_i - decommafy(info[idx]).to_i
+      new_dls = to_int(row[idx]) - to_int(info[idx])
       @new_downloads += new_dls if idx.eql?(COL_TDL)
       row[idx] = new_dls > 0 ? "#{row[idx]} ( +#{commafy(new_dls)} )" : row[idx]
     end
@@ -46,6 +49,10 @@ module GemCheck
     def search_by_column(table, column, search_s)
       return table if table.empty?
       table.select{ |r| r[column].eql?(search_s) }
+    end
+
+    def to_int(string)
+      decommafy(string).to_i
     end
 
     # Maintanence
