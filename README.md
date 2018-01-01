@@ -21,6 +21,7 @@ $ gem-check
 | :--- | :---:  |
 | -f | Don't save the updated stats for this run.  |
 | -h | Display the help screen.  |  
+| -u | Update gem-check. |  
 
 ### Note  
   Gem stats data stored in ~/gem-check.json  

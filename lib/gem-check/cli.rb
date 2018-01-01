@@ -6,6 +6,19 @@ module GemCheck
       puts "\n  Flags:\n"
       puts "    -f   Don't save the updated stats for this run."
       puts "    -h   Display this help screen."
+      puts "    -u   Update gem-check."
+      puts
+    end
+
+    def self.option?(argv, opts)
+      argv.any? { |option| opts.include?(option) }
+    end
+
+    def self.update
+      puts "\nThis will install the latest version of gem-check."
+      print 'Continue? [Yn] '
+      response = STDIN.gets.chomp
+      puts "\n" + `gem install gem-check` if response.downcase.include?('y')
       puts
     end
 

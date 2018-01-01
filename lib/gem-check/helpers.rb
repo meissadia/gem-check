@@ -27,7 +27,7 @@ module GemCheck
       return latest_info if @previous_stats.empty?
       latest_info.each do |row|
         prev_info = search_by_column(@previous_stats, COL_NAME, row[COL_NAME])
-        prev_info = search_by_column(prev_info,       COL_VER,  row[COL_VER]) unless prev_info.empty?
+        prev_info = search_by_column(prev_info,       COL_VER,  row[COL_VER])
         prev_info = prev_info.first || new_version_info(row)
         calc_new_downloads(COL_TDL, row, prev_info)
         calc_new_downloads(COL_VDL, row, prev_info)
